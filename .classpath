@@ -5,5 +5,12 @@
 	<classpathentry kind="lib" path="lib/cae_pdf2html.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/junrar-0.7.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.3-jdk15.jar"/>
+	<classpathentry kind="lib" path="lib/json-taglib-0.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc-6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
