@@ -2,6 +2,7 @@ package org.cae.client;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +10,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 import java.util.Properties;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.cae.common.IConstant;
 import org.cae.common.UploadResult;
 import org.cae.common.Util;
@@ -20,16 +24,20 @@ import org.cae.p2h.client.TransformProxy;
 
 public class UploadCallClient {
 
+	private Log logger=LogFactory.getLog(this.getClass());
+	
+	private String destDir;
+	
 	public void start(){
-		//new TransformProxy().transform();
-		//String htmlPath=getHtmlPath();
-		//String zipPath=Util.zip(htmlPath);
-		String zipPath="result.zip";
+		new TransformProxy().transform();
+		getHtmlPath();
+		String zipPath=Util.zip(destDir);
 		UploadResult result=upload(zipPath);
+		deleteFile(zipPath);
 		handleResult(result);
 	}
 	
-	private String getHtmlPath(){
+	private void getHtmlPath(){
 		Properties properties = null;
 		try {
 			InputStream in = this.getClass().getResourceAsStream("/p2h.properties");
@@ -38,7 +46,7 @@ public class UploadCallClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return properties.getProperty("file.destdir");
+		destDir=properties.getProperty("file.destdir");
 	}
 	
 	@SuppressWarnings("finally")
@@ -120,7 +128,7 @@ public class UploadCallClient {
                 	theResult=new UploadResult();
                 }
                 else{
-                	theResult=new UploadResult(result.getBoolean("successed"), result.get("result"),result.getString("errInfo"));
+                	theResult=new UploadResult(result.getBoolean("successed"), (List<String>)result.get("result"),result.getString("errInfo"));
                 }
             }
 
@@ -159,7 +167,39 @@ public class UploadCallClient {
         }
 	}
 	
+	private void deleteFile(String zipPath){
+		File file=new File(destDir);
+		if(file.isDirectory()){
+			File[] htmls=file.listFiles();
+			for(File html:htmls){
+				html.delete();
+			}
+			file.delete();
+		}
+		file=new File(zipPath);
+		file.delete();
+	}
+	
 	private void handleResult(UploadResult result) {
+		if(result.isSuccessed()){
+			logger.info("上传成功");
+		}
+		else{
+			logger.error("上传失败,失败原因:"+result.getErrInfo());
+			if(result.getFailList()!=null){
+				String str="";
+				List<String> failList=result.getFailList();
+				for(int i=0;i<failList.size();i++){
+					if(i==failList.size()-1){
+						str+=failList.get(i);
+					}
+					else{
+						str+=failList.get(i)+",";
+					}
+				}
+				logger.error("失败歌曲名单:"+str);
+			}
+		}
 		System.out.println(result);
 	}
 	

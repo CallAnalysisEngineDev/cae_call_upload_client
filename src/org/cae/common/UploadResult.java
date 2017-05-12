@@ -1,16 +1,18 @@
 package org.cae.common;
 
+import java.util.List;
+
 public class UploadResult {
 
 	private boolean successed;
-	private Object result;
+	private List<String> failList;
 	private String errInfo;
 	public UploadResult(){
 		this.successed=true;
 	}
-	public UploadResult(boolean successed,Object result,String errInfo){
+	public UploadResult(boolean successed,List<String> failList,String errInfo){
 		this.successed=successed;
-		this.result=result;
+		this.failList=failList;
 		this.errInfo=errInfo;
 	}
 	public boolean isSuccessed() {
@@ -19,11 +21,11 @@ public class UploadResult {
 	public void setSuccessed(boolean successed) {
 		this.successed = successed;
 	}
-	public Object getResult() {
-		return result;
+	public List<String> getFailList() {
+		return failList;
 	}
-	public void setResult(Object result) {
-		this.result = result;
+	public void setFailList(List<String> failList) {
+		this.failList = failList;
 	}
 	public String getErrInfo() {
 		return errInfo;
@@ -37,9 +39,23 @@ public class UploadResult {
 			return "successed:"+successed+"\n";
 		}
 		else{
-			return "successed:"+successed+"\n"
-					+ "result:"+result+"\n"
-					+ "errInfo:"+errInfo+"\n";
+			if(failList!=null){
+				String str="";
+				for(int i=0;i<failList.size();i++){
+					if(i==failList.size()-1){
+						str+=failList.get(i);
+					}
+					else{
+						str+=failList.get(i)+",";
+					}
+				}
+				return "successed:"+successed+"\n"
+						+ "errInfo:"+errInfo+"\n"
+						+ "failList:"+str+"\n";
+			}else{
+				return "successed:"+successed+"\n"
+						+ "errInfo:"+errInfo+"\n";
+			}
 		}
 	}
 	
