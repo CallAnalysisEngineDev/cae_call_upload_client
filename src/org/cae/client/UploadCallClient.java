@@ -65,12 +65,11 @@ public class UploadCallClient {
 
         try {
             // 统一资源
-            URL url = new URL(IConstant.SERVER_URL);
+            URL url = new URL(IConstant.UPLOAD_SERVER_URL);
             // 连接类的父类，抽象类
             URLConnection urlConnection = url.openConnection();
             // http的连接类
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-
             // 设置是否从httpUrlConnection读入，默认情况下是true;
             httpURLConnection.setDoInput(true);
             // 设置是否向httpUrlConnection输出
@@ -200,7 +199,6 @@ public class UploadCallClient {
 				logger.error("失败歌曲名单:"+str);
 			}
 		}
-		System.out.println(result);
 	}
 	
 	public static void main(String[] args) {
