@@ -90,8 +90,13 @@ public class UploadCallClient {
             String uploadFile = path;
             String filename = uploadFile.substring(uploadFile.lastIndexOf("//") + 1);
             ds.writeBytes(twoHyphens + boundary + end);
+            ds.writeBytes("Content-Disposition: form-data;name=\"callVersion\""+end);
+            ds.writeBytes(end);
+            ds.writeBytes(IConstant.CALL_VERSION);
+            ds.writeBytes(end);
+            ds.writeBytes(twoHyphens + boundary + end);
             ds.writeBytes("Content-Disposition: form-data; " + "name=\"file\";filename=\"" + filename
-                    + "\";" + end);
+                    + "\";callVersion=100" + end);
             ds.writeBytes("Content-Type: application/octet-stream"+ end);
             ds.writeBytes(end);
             FileInputStream fStream = new FileInputStream(uploadFile);

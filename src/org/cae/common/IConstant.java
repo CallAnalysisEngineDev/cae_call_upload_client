@@ -13,4 +13,7 @@ public class IConstant {
 	
 	//下载的call表覆盖到本地的路径
 	public final static String DOWNLOAD_HTML_PATH = "D:\\nginx-1.12.0\\cae\\resource\\html\\aqours";
+	
+	//上传call表的版本号
+	public final static String CALL_VERSION = "25";
 }
