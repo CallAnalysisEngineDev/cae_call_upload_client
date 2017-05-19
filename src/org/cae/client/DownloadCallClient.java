@@ -35,7 +35,7 @@ public class DownloadCallClient{
 				byte[] b=new byte[2048];
 				int read=0;
 	            int len=0;
-	            String previous = "0.0";
+	            String previous = "";
 	            while((len=inputStream.read(b))!=-1){
 	            	read+=len;
 	                fos.write(b, 0, len);

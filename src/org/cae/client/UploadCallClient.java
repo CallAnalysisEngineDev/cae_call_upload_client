@@ -132,7 +132,7 @@ public class UploadCallClient {
                 	theResult=new UploadResult();
                 }
                 else{
-                	theResult=new UploadResult(result.getBoolean("successed"), (List<String>)result.get("result"),result.getString("errInfo"));
+                	theResult=new UploadResult(result.getBoolean("successed"), (List<String>)result.get("failList"),result.getString("errInfo"));
                 }
             }
 
