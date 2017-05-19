@@ -11,6 +11,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.logging.Log;
+
 public class Util {
 
 	public static String zip(String path){
@@ -51,7 +53,7 @@ public class Util {
         }
 	}
 	
-	public static void unzip(){
+	public static void unzip(Log logger){
 		try {  
             ZipInputStream Zin=new ZipInputStream(new FileInputStream(IConstant.ZIP_NAME));//输入源zip路径  
             BufferedInputStream Bin=new BufferedInputStream(Zin);  
@@ -71,7 +73,7 @@ public class Util {
                     }  
                     Bout.close();  
                     out.close();  
-                    System.out.println(Fout+"解压成功");      
+                    logger.info(Fout+"已解压");     
                 }  
                 Bin.close();  
                 Zin.close();  
