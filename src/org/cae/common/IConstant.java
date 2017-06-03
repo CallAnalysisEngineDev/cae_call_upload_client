@@ -3,7 +3,8 @@ package org.cae.common;
 public class IConstant {
 
 	//上传call表时服务器的URL
-	public final static String UPLOAD_SERVER_URL = "http://liuyang-anime.cn/cae_call_upload_server/upload";
+	//public final static String UPLOAD_SERVER_URL = "http://localhost:81/cae_call_upload_server/upload";
+	public final static String UPLOAD_SERVER_URL = "http://www.liuyang-anime.cn/cae_call_upload_server/upload";
 	
 	//上传、下载时产生的临时压缩文件名
 	public final static String ZIP_NAME = "result.zip";
@@ -15,5 +16,5 @@ public class IConstant {
 	public final static String DOWNLOAD_HTML_PATH = "D:\\nginx-1.12.0\\cae\\resource\\html\\aqours";
 	
 	//上传call表的版本号
-	public final static String CALL_VERSION = "25";
+	public final static Integer CALL_VERSION = 26;
 }

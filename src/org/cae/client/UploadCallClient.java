@@ -92,7 +92,7 @@ public class UploadCallClient {
             ds.writeBytes(twoHyphens + boundary + end);
             ds.writeBytes("Content-Disposition: form-data;name=\"callVersion\""+end);
             ds.writeBytes(end);
-            ds.writeBytes(IConstant.CALL_VERSION);
+            ds.writeBytes(IConstant.CALL_VERSION+"");
             ds.writeBytes(end);
             ds.writeBytes(twoHyphens + boundary + end);
             ds.writeBytes("Content-Disposition: form-data; " + "name=\"file\";filename=\"" + filename
