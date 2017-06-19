@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.cae.common.IConstant;
-import org.cae.common.Util;
+import static org.cae.common.Util.unzip;
 
 public class DownloadCallClient{
 
@@ -50,7 +50,7 @@ public class DownloadCallClient{
 	            fos.flush();
 	            fos.close();
 	            logger.info("下载call表结束,开始解压zip包");
-	            Util.unzip(logger);
+	            unzip(logger);
 	            logger.info("解压完成,即将删除zip包");
 	            new File(IConstant.ZIP_NAME).delete();
 	            logger.info("全部完成");

@@ -19,7 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.cae.common.IConstant;
 import org.cae.common.UploadResult;
-import org.cae.common.Util;
+import static org.cae.common.Util.zip;
 import org.cae.p2h.client.TransformProxy;
 
 public class UploadCallClient {
@@ -31,7 +31,7 @@ public class UploadCallClient {
 	public void start(){
 		new TransformProxy().transform();
 		getHtmlPath();
-		String zipPath=Util.zip(destDir);
+		String zipPath=zip(destDir);
 		UploadResult result=upload(zipPath);
 		deleteFile(zipPath);
 		handleResult(result);
