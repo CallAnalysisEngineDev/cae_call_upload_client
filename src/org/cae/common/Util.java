@@ -12,9 +12,15 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 
 public class Util {
 
+	private static Logger logger = Logger.getLogger(Util.class);
+	
+	//私有构造器防止外部创建新的Util对象
+	private Util(){}
+	
 	public static String zip(String path) {
 		try {
 			File inputFile = new File(path);
@@ -25,8 +31,8 @@ public class Util {
 			bo.close();
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			logger.error(e.getMessage(), e);
+			return "";
 		}
 		return IConstant.ZIP_NAME;
 	}
@@ -83,10 +89,10 @@ public class Util {
 				Bin.close();
 				Zin.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getMessage(), e);
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
 		}
 	}
 }

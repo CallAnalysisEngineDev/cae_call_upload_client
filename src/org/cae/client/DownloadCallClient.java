@@ -58,9 +58,9 @@ public class DownloadCallClient {
 				logger.info("全部完成");
 			}
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
 		}
 	}
 
