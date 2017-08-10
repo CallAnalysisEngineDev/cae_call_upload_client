@@ -8,7 +8,7 @@ public class IConstant {
 	public final static String UPLOAD_SERVER_URL = "http://123.207.27.244/cae_call_upload_server/upload";
 
 	// 上传call表的版本号
-	public final static Integer CALL_VERSION = 30;
+	public final static Integer CALL_VERSION = 32;
 
 	// 上传、下载时产生的临时压缩文件名
 	public final static String ZIP_NAME = "result.zip";
